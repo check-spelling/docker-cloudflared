@@ -14,7 +14,7 @@ jobs:
           chmod u+x ./scripts/isUpdated.sh
           ./scripts/isUpdated.sh
       - name: Trigger build check
-        if: "(test -f DOCKER_VERSION.txt && echo DOCKER_VERSION.txt exists) || echo DOCKER_VERSION.txt does not exist, skipping step"
+        if: ${{ hashFiles('DOCKER_VERSION.txt') != '' "
         run: |
           echo "Triggering because there is the new version $(cat DOCKER_VERSION.txt)"
 
