@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
     version:
       required: true
-  workflow_call:
 
 jobs:
   docker:
@@ -39,7 +38,7 @@ jobs:
           context: ./cloudflared
           file: Dockerfile
           platforms: linux/arm64,linux/amd64
-          push: false
+          push: true
           tags: |
             afonsoc12/cloudflared:latest
             afonsoc12/cloudflared:${{ github.event.inputs.version }}

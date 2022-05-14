@@ -5,10 +5,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  external-trigger-master:
+  external-trigger:
+    id: version_check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.3
+      
       - name: Version diff
         run: |
           chmod u+x ./scripts/isUpdated.sh
