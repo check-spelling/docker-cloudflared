@@ -2,8 +2,9 @@ name: Builds and pushes image
 
 on:
   workflow_dispatch:
-    version:
-      required: true
+    inputs:
+      version:
+        required: true
 
 jobs:
   docker:
