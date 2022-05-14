@@ -8,7 +8,9 @@ jobs:
   external-trigger:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version-getter.outputs.version }}
+      version: 
+        value: ${{ steps.version-getter.outputs.version }}
+        type: string
     steps:
       - uses: actions/checkout@v2.3.3
       
