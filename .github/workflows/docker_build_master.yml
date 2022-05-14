@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     version:
       required: true
+  workflow_call:
 
 jobs:
   docker:
@@ -14,8 +15,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Clone cloudflare/cloudflared
         run: |
+          echo "Building image for version: ${{ github.event.inputs.version }}"
           chmod u+x ./scripts/clone.sh
-          ./scripts/clone.sh
+          ./scripts/clone.sh ${{ github.event.inputs.version }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
