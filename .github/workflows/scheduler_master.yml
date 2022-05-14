@@ -14,7 +14,7 @@ jobs:
           chmod u+x ./scripts/isUpdated.sh
           ./scripts/isUpdated.sh
       - name: Trigger build check
-        if: ${{ hashFiles('DOCKER_VERSION.txt') != '' "
+        if: ${{ hashFiles('DOCKER_VERSION.txt') != '' }}
         run: |
           echo "Triggering because there is the new version $(cat DOCKER_VERSION.txt)"
 
