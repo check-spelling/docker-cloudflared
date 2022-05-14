@@ -1,7 +1,8 @@
 name: Checks for new releases and deploys master
 on:
   schedule:
-    - cron:  '* * * * *'
+    - cron:  '46 * * * *'
+  worflow_dispatch:
 
 jobs:
   external-trigger-master:
