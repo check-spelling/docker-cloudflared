@@ -5,6 +5,10 @@ on:
     inputs:
       version:
         required: true
+  workflow_call:
+    inputs:
+      version:
+        required: true
 
 jobs:
   docker:
