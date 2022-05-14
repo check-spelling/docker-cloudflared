@@ -1,7 +1,7 @@
 name: Checks for new releases and deploys master
 on:
   schedule:
-    - cron:  '47 * * * *'
+    - cron:  '55 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
           chmod u+x ./scripts/isUpdated.sh
           ./scripts/isUpdated.sh
       - name: Trigger build check
-        if: "[ -s DOCKER_VERSION.txt ]"
+        if: "(test -f DOCKER_VERSION.txt && echo DOCKER_VERSION.txt exists) || echo DOCKER_VERSION.txt does not exist, skipping step"
         run: |
           echo "Triggering because there is the new version $(cat DOCKER_VERSION.txt)"
 
