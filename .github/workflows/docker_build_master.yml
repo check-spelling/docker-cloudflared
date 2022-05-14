@@ -13,7 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Clone cloudflare/cloudflared
-        run: chmod u+x ./scripts/clone.sh && ./scripts/clone.sh
+        run: |
+          chmod u+x ./scripts/clone.sh
+          ./scripts/clone.sh
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
