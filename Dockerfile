@@ -1,11 +1,11 @@
 # From https://github.com/cloudflare/cloudflared/commits/master/Dockerfile
 # Revision d54c8cc74544927dab45823681185615b4489363
 
-FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS build-env
-#ARG BUILDPLATFORM
-#ARG TARGETPLATFORM
-#TARGETOS
-#TARGETARCH
+FROM --platform=$BUILDPLATFORM golang:1.17 AS build-env
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \

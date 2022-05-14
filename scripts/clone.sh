@@ -6,5 +6,5 @@ git clone --branch master --depth 1 $git_url
 
 echo "**** Repository cloudflare/cloudflared successfully cloned!"
 
-mv Dockerfile cloudflared
+cp Dockerfile cloudflared
 echo "**** Replaced Dockerfile ****"
