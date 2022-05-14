@@ -22,6 +22,6 @@ jobs:
           curl --request POST \
             --url 'https://api.github.com/repos/afonsoc12/docker-cloudflared/actions/workflows/docker_build_master.yml/dispatches' \
             -H 'Authorization: token ${GITHUB_TOKEN}' \
-            --d '{"ref": "main", "inputs": {"version": "$version"}}'
+            -d '{"ref": "main", "inputs": {"version": "$version"}}'
 
       
