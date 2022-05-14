@@ -17,14 +17,14 @@ jobs:
           chmod u+x ./scripts/isUpdated.sh
           ./scripts/isUpdated.sh
 
-      - name: Trigger build check
-        id: version-getter
-
+      - id: version-getter
+        name: Trigger build check
         if: ${{ hashFiles('DOCKER_VERSION.txt') != '' }}
         run: |
           version=$(cat DOCKER_VERSION.txt)
           echo "Triggering because there is the new version $version"
           echo "::set-output name=version::$version"
+          
   trigger:
     needs: external-trigger
     uses: ./.github/workflows/docker_build_master.yml
