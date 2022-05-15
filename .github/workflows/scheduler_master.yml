@@ -26,8 +26,10 @@ jobs:
           echo "Triggering because there is the new version $version"
           echo "::set-output name=version::$version"
           
-#   trigger:
-#     needs: external_trigger
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      run: echo "helo"
 #     uses: ./.github/workflows/docker_build_master.yml
 #     with:
 #       version: bla 
