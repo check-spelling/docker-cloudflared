@@ -27,11 +27,11 @@ jobs:
           echo "::set-output name=version::$version"
           
   trigger:
-#     needs: external_trigger
+    needs: external_trigger
     uses: ./.github/workflows/docker_build_master.yml
     with:
       version: bla 
-#       ${{ needs.external-trigger.outputs.version }}
+#       ${{ needs.external_trigger.outputs.version }}
     
 
       
