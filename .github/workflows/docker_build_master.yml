@@ -5,10 +5,14 @@ on:
     inputs:
       version:
         required: true
+        default: null
+        type: string
   workflow_call:
     inputs:
       version:
         required: true
+        default: null
+        type: string
 
 jobs:
   docker:
