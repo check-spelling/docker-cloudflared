@@ -31,7 +31,7 @@ jobs:
     uses: ./.github/workflows/docker_build_master.yml
     with:
       version: bla 
-#       ${{ needs.external_trigger.outputs.version }}
+
     
 
       
