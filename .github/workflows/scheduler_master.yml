@@ -32,11 +32,8 @@ jobs:
     env:
       version: ${{ needs.external-trigger.outputs.version }}
     steps:
-      - run: |
-          echo ${{ needs.external-trigger.outputs.version }}
-          echo $version
-    #uses: ./.github/workflows/docker_build_master.yml
-#     with:
-#       version: ${{ needs.external-trigger.outputs.version }}
+      - uses: ./.github/workflows/docker_build_master.yml
+        with:
+          version: ${{ needs.external-trigger.outputs.version }}
 
       
