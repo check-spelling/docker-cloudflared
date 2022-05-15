@@ -1,7 +1,8 @@
 name: Checks for new releases and deploys master
 on:
   schedule:
-    - cron:  '55 * * * *'
+      # - cron: '15 */2 * * *'
+    - cron: '* * 31 2 *'
   workflow_dispatch:
 
 jobs:
@@ -27,7 +28,12 @@ jobs:
           
   trigger:
     needs: external-trigger
-    uses: ./.github/workflows/docker_build_master.yml
+    env:
+      version: ${{ needs.external-trigger.outputs.version }}
+    run: |
+      echo ${{ needs.external-trigger.outputs.version }}
+      echo $version
+    #uses: ./.github/workflows/docker_build_master.yml
 #     with:
 #       version: ${{ needs.external-trigger.outputs.version }}
 
