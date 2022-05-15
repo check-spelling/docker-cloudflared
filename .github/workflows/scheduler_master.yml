@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  external-trigger:
+  external_trigger:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version-getter.outputs.version }}
+      version: ${{ steps.version_getter.outputs.version }}
     steps:
       - uses: actions/checkout@v2.3.3
       
@@ -18,7 +18,7 @@ jobs:
           chmod u+x ./scripts/isUpdated.sh
           ./scripts/isUpdated.sh
 
-      - id: version-getter
+      - id: version_getter
         name: Trigger build check
         if: ${{ hashFiles('DOCKER_VERSION.txt') != '' }}
         run: |
@@ -26,11 +26,11 @@ jobs:
           echo "Triggering because there is the new version $version"
           echo "::set-output name=version::$version"
           
-  trigger:
-    needs: external-trigger
-    uses: ./.github/workflows/docker_build_master.yml
-    with:
-      version: bla 
+#   trigger:
+#     needs: external_trigger
+#     uses: ./.github/workflows/docker_build_master.yml
+#     with:
+#       version: bla 
 #       ${{ needs.external-trigger.outputs.version }}
     
 
