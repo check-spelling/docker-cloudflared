@@ -34,7 +34,7 @@ jobs:
     needs: external_trigger
     runs-on: ubuntu-latest
     steps:
-      run: echo "${{ needs.external_trigger.outputs.version }}"
+      - run: echo "${{ needs.external_trigger.outputs.version }}"
 
     
 
