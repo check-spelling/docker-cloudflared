@@ -30,12 +30,12 @@ jobs:
     needs: external_trigger
     env:
       version: ${{ needs.external_trigger.outputs.version }}
-#     uses: ./.github/workflows/docker_build_master.yml
-#     with:
-#       version: "${{ needs.external_trigger.outputs.version }}"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo $version
+    uses: ./.github/workflows/docker_build_master.yml
+    with:
+      version: $version
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo $version
 
     
 
