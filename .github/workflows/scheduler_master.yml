@@ -26,11 +26,11 @@ jobs:
           echo "Triggering because there is the new version $version"
           echo "::set-output name=version::$version"
           
-#   trigger:
-#     needs: external_trigger
-#     uses: ./.github/workflows/docker_build_master.yml
-#     with:
-#       version: bla 
+  trigger:
+    needs: external_trigger
+    uses: ./.github/workflows/docker_build_master.yml
+    with:
+      version: bla 
 #       ${{ needs.external-trigger.outputs.version }}
     
 
