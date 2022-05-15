@@ -28,12 +28,9 @@ jobs:
           
   trigger:
     needs: external-trigger
-    env:
-      version: ${{ needs.external-trigger.outputs.version }}
     uses: ./.github/workflows/docker_build_master.yml
     with:
-      version: $version
-#       version: ${{ needs.external-trigger.outputs.version }}
+      version: ${{ needs.external-trigger.outputs.version }}
     
 
       
