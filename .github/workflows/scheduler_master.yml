@@ -29,7 +29,7 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
-      run: echo "helo"
+      - run: echo "helo"
 #     uses: ./.github/workflows/docker_build_master.yml
 #     with:
 #       version: bla 
