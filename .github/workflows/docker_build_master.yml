@@ -11,10 +11,14 @@ on:
     inputs:
       version:
         required: true
-        default: null
         type: string
+        default: null
 
 jobs:
+  print_input:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "${{ github.event.inputs.version }}"
   docker:
     name: Deploy to DockerHub (latest)
     if: ${{ github.event.inputs.version != null }}"
