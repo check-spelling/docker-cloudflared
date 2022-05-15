@@ -9,7 +9,11 @@ jobs:
       version: ${{ steps.version-getter.outputs.version }}
     steps:
       - id: version-getter
-        run: echo "::set-output name=version::hel
+        run: |
+          date
+          echo "tst"
+          echo "::set-output name=version::hello"
+          echo "tst2"
   trigger:
     runs-on: ubuntu-latest
     needs: external-trigger
