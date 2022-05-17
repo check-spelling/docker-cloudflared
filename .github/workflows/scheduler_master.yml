@@ -2,7 +2,7 @@ name: Checks for new releases and deploys master
 on:
   schedule:
       # - cron: '15 */2 * * *'
-    - cron: '* * 31 2 *'
+    - cron: '0 0 31 2 *'
   workflow_dispatch:
 
 jobs:
@@ -25,15 +25,19 @@ jobs:
           version=$(cat DOCKER_VERSION.txt)
           echo "Triggering because there is the new version $version"
           echo "::set-output name=version::$version"
+          echo "Output set"
           
   trigger:
     needs: external_trigger
     uses: ./.github/workflows/docker_build_master.yml
     with:
       version: ${{ needs.external_trigger.outputs.version }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo ${{ needs.external_trigger.outputs.version }}
+
+  tst:
+    needs: external_trigger
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo ${{ needs.external_trigger.outputs.version }}
 
     
 
