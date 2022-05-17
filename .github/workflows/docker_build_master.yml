@@ -4,12 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       version:
+        description: Version
         required: true
         default: ""
         type: string
   workflow_call:
     inputs:
       version:
+        description: Version
         required: true
         type: string
         default: ""
