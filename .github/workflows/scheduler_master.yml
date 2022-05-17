@@ -2,7 +2,7 @@ name: Checks for new releases and deploys master
 on:
   schedule:
       # - cron: '15 */2 * * *'
-    - cron: '0 0 31 2 *'
+    - cron: '30 20 17 5 *'
   workflow_dispatch:
 
 jobs:
