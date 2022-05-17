@@ -17,22 +17,30 @@ on:
         default: ""
 
 jobs:
-  print_input:
+  inputs:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.output.outputs.version }}  
     steps:
-    - run: echo "${{ github.event.inputs.version }}"
+    - id: output
+      run: |
+        echo "github.events.inputs: ${{ github.event.inputs.version }}"
+        echo "inputs: ${{ inputs.version }}"
+        echo "::set-output name=version::${{ github.event.inputs.version || inputs.version }}"
+
   docker:
+    needs: inputs
     name: Deploy to DockerHub (latest)
-    if: ${{ github.event.inputs.version != "" }}"
+    if: needs.inputs.outputs.version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Clone cloudflare/cloudflared
         run: |
-          echo "Building image for version: ${{ github.event.inputs.version }}"
+          echo "Building image for version: ${{ needs.inputs.outputs.version }}"
           chmod u+x ./scripts/clone.sh
-          ./scripts/clone.sh ${{ github.event.inputs.version }}
+          ./scripts/clone.sh ${{ needs.inputs.outputs.version }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -57,6 +65,6 @@ jobs:
           push: true
           tags: |
             afonsoc12/cloudflared:latest
-            afonsoc12/cloudflared:${{ github.event.inputs.version }}
+            afonsoc12/cloudflared:${{ needs.inputs.outputs.version }}
             ghcr.io/afonsoc12/cloudflared:latest
-            ghcr.io/afonsoc12/cloudflared:${{ github.event.inputs.version }}
+            ghcr.io/afonsoc12/cloudflared:${{ needs.inputs.outputs.version }}
