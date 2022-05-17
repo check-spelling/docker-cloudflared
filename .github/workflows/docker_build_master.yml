@@ -5,14 +5,14 @@ on:
     inputs:
       version:
         required: true
-        default: null
+        default: ""
         type: string
   workflow_call:
     inputs:
       version:
         required: true
         type: string
-        default: null
+        default: ""
 
 jobs:
   print_input:
@@ -21,7 +21,7 @@ jobs:
     - run: echo "${{ github.event.inputs.version }}"
   docker:
     name: Deploy to DockerHub (latest)
-    if: ${{ github.event.inputs.version != null }}"
+    if: ${{ github.event.inputs.version != "" }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
