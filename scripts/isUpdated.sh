@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 ext_tag=$(curl -s \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/cloudflare/cloudflared/releases?page=1 | jq -r '.[0]["tag_name"]')
@@ -18,7 +20,7 @@ if [ -z "${ext_tag}" ] || [ "${ext_tag}" == "null" ]; then
 elif [ -z "${last_tag}" ]; then
     echo "**** Can't retrieve last release, exiting... ****"
     exit 1
-elif [ ext_tag == last_tag]; then
+elif [ $ext_tag == $last_tag]; then
     echo "**** Current release is still up-to-date ****"
     echo "    - Cloudflared version:  $ext_tag"
     echo "    - Last release version: $last_tag"
